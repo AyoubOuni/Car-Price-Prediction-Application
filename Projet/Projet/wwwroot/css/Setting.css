@@ -1,0 +1,123 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&family=Smooch+Sans:wght@600&display=swap');
+
+.title {
+    font-family: 'Smooch Sans', sans-serif;
+    font-size: 30px;
+}
+
+.title2 {
+    font-family: 'Smooch Sans', sans-serif;
+    font-size: 70px;
+}
+
+.sub-title {
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Smooch Sans', sans-serif;
+    text-align: center;
+    position: relative;
+    bottom: 20px;
+    font-size: 23px;
+}
+
+.btn-predict {
+    background: #1C1C1C;
+    color: white;
+    height: 50px;
+    border-radius: 30px;
+    font-weight: bold;
+    width: 20%;
+}
+
+    .btn-predict : hover {
+        background: #1C1C1C;
+        color: white;
+        height: 50px;
+        border-radius: 10px;
+        font-weight: bold;
+    }
+.faq-drawer {
+}
+
+.faq-drawer__content-wrapper {
+    font-size: 1.25em;
+    line-height: 1.4em;
+    max-height: 0px;
+    overflow: hidden;
+    transition: 0.25s ease-in-out;
+}
+
+.faq-drawer__title {
+    border-top: #000 1px solid;
+    cursor: pointer;
+    display: block;
+    font-size: 1.25em;
+    font-weight: 700;
+    padding: 26px 0 26px 0;
+    position: relative;
+    margin-bottom: 0;
+    transition: all 0.25s ease-out;
+}
+
+    .faq-drawer__title::after {
+        border-style: solid;
+        border-width: 1px 1px 0 0;
+        content: " ";
+        display: inline-block;
+        float: right;
+        height: 10px;
+        left: -35px;
+        position: relative;
+        right: 20px;
+        top: -25px;
+        transform: rotate(135deg);
+        transition: 0.35s ease-in-out;
+        vertical-align: top;
+        width: 10px;
+    }
+
+    /* OPTIONAL HOVER STATE */
+    .faq-drawer__title:hover {
+        color: #4E4B52;
+    }
+
+.faq-drawer__trigger:checked + .faq-drawer__title + .faq-drawer__content-wrapper {
+    max-height: 350px;
+}
+
+.faq-drawer__trigger:checked + .faq-drawer__title::after {
+    transform: rotate(-45deg);
+    transition: 0.25s ease-in-out;
+}
+.form-auth {
+    height: 50px;
+    background: #F2F2F2;
+    border-radius: 10px;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        padding: 80px;
+    }
+}
+
+.btn_update {
+    background: #1C1C1C;
+    color: white;
+    height: 50px;
+    border-radius: 30px;
+    font-weight: bold;
+    width: 20%;
+}
+
+    .btn_update : hover {
+        background: #1C1C1C;
+        color: white;
+        height: 50px;
+        border-radius: 10px;
+        font-weight: bold;
+    }

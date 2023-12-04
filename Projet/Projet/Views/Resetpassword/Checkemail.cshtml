@@ -1,0 +1,65 @@
+﻿@model Projet.Models.User
+
+@{
+    ViewData["Title"] = "Check Email";
+}
+<head>
+    <link rel="stylesheet" href="~/css/Inscription.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+</head>
+<div class="container">
+
+    <div class="row">
+        <div class=" col-7  ms-5">
+            <img src="~/images/check.jpg" class="image_inscription" />
+        </div>
+        <div class=" col-5 " style="margin-top:11.5rem">
+            <h1 class="title text-center">Reset Password</h1>
+
+            <h5 class="subtitle mb-3">Easily reset it in seconds and regain access to your account</h5>
+
+            <form asp-action="sendemail" method="post">
+                <div class="form-group">
+                    <div class="input-group form-auth mb-1">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        <input asp-for="Email" name="Email" placeholder="Email" class="form-control form-auth ">
+
+                    </div>
+                    <span asp-validation-for="Email" class="text-danger mt-1"></span>
+                </div>
+                @if (!ViewData.ModelState.IsValid)
+                {
+                <div class="d-flex justify-content-center">
+                    @foreach (var key in ViewData.ModelState.Keys)
+                    {
+                    foreach (var error in ViewData.ModelState[key].Errors)
+                    {
+                    <div class="error-message text-danger">
+                        @error.ErrorMessage !
+                    </div>
+                    }
+                    }
+                </div>
+                }
+
+                <div class="form-group mt-3">
+                    <input type="submit" value="Send" class="btn btn-login" />
+                </div>
+                <div class="d-flex justify-content-center mt-1">
+                    Do you Remember it?           <a asp-action="Auth" asp-controller="Login" class="forget"> &nbsp;Log in </a>
+                </div>
+            </form>
+            <img src="~/images/Vector.png" style="position: relative; left: 130%;" />
+
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+
+

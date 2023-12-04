@@ -1,0 +1,260 @@
+﻿@model Projet.Models.User
+
+@{
+    ViewBag.Title = "Home Page";
+    var currentUser = ViewBag.CurrentUser as Projet.Models.User;
+    var username = currentUser.Firstname + " " + currentUser.Lastname;
+    var id = currentUser.Id;
+}
+<head>
+    <link rel="stylesheet" href="~/css/Home.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<style>
+    .carousel-control-prev-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+    }
+
+    .carousel-control-next-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+    }
+</style>
+
+
+<div style="max-width:unset !important">
+    <nav>
+        <div class="bg-dark row ">
+            <a asp-controller="Home" asp-action="Index" style="text-decoration: none; text-wrap: nowrap;"> <span class="col-6 d-flex justify-content-start py-1 " style="position: relative; left: 55px; "> <img src="~/images/logo.png" width="70" height="60" /><span class="title mt-2 text-white">Car Price</span></span></a>
+            <!-- Assuming this is part of your HTML structure -->
+            <div class="col-6 d-flex justify-content-end" style="position: absolute; right: 40px; top: 13px;">
+                <span class="text-white h6" style="top: 10px; position: relative;">@username</span>
+                <div class="dropdown">
+                    <img src="~/images/user.png" width="40" height="40" id="userDropdownToggle" style="cursor:pointer" class="user-dropdown-toggle" />
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" id="userDropdownMenu">
+                        <a class="dropdown-item" asp-controller="Home" asp-action="History">
+                            <i class="fas fa-history"></i> History
+                        </a>
+                        <a class="dropdown-item" asp-controller="Home" asp-action="Setting">
+                            <i class="fas fa-cog"></i> Settings
+                        </a>
+                        <a class="dropdown-item" asp-controller="Home" asp-action="Logout">
+                            <i class="fas fa-sign-out-alt"></i> Log Out
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </nav>
+    <div class="text-center">
+        <h1 class="title2 mt-2">Let's predict the price !</h1>
+    </div>
+    <div class="text-center">
+        <div class="sub-title">
+            Fill the fields and get the price in seconds
+        </div>
+    </div>
+    <form method="post" asp-controller="Predict" asp-action="SubmitForm">
+
+        <div class="d-flex justify-content-center row mx-4 ">
+            <input type="hidden" name="UserId" value="@id" />
+            <div class=" col-3 form-group">
+                <div class="  mb-1">
+                    <input placeholder="make" name="Make" class="form-control form-auth " required>
+                </div>
+            </div>
+            <div class="col-3 form-group">
+
+                <div class="mb-1">
+                    <select class="form-control form-auth" required name="Symboling">
+                        <option value="">Select Symboling</option>
+                        <option value="-3">Symboling -3</option>
+                        <option value="-2">Symboling -2</option>
+                        <option value="-1">Symboling -1</option>
+                        <option value="0">Symboling 0</option>
+                        <!-- Add other symboling options as needed -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-3 form-group">
+                <div class="mb-1">
+                    <select class="form-control form-auth" required name="FuelType">
+                        <option value="">Select Fuel Type</option>
+                        <option value="Gasoline">Gasoline</option>
+                        <option value="Diesel">Diesel</option>
+
+                        <!-- Add other fuel types as needed -->
+                    </select>
+                </div>
+                <span class="text-danger mt-1"></span>
+            </div>
+
+            <div class="col-3 form-group">
+                <div class="mb-1">
+                    <select class="form-control form-auth" required name="Aspiration">
+                        <option value="">Select Aspiration</option>
+                        <option value="std">Standard (Naturally Aspirated)</option>
+                        <option value="turbo">Turbocharged</option>
+                    </select>
+                </div>
+                <span class="text-danger mt-1"></span>
+            </div>
+            <div class="col-3 form-group">
+                <div class="mb-1">
+                    <select class="form-control form-auth" required name="NumOfDoors">
+                        <option value="">Select Number of Doors</option>
+                        <option value="2">Two</option>
+                        <option value="4">Four</option>
+                        <!-- Add other options as needed based on your dataset -->
+                    </select>
+                </div>
+                <span class="text-danger mt-1"></span>
+            </div>
+
+            <div class="col-3 form-group">
+                <div class="mb-1">
+                    <select class="form-control form-auth" required name="BodyStyle">
+                        <option value="">Select Body Style</option>
+                        <option value="sedan">Sedan</option>
+                        <option value="hardtop">Hardtop</option>
+                        <option value="hatchback">Hatchback</option>
+                        <option value="convertible">Convertible</option>
+                        <option value="wagon">Wagon</option>
+                        <!-- Add other options as needed based on your dataset -->
+                    </select>
+                </div>
+                <span class="text-danger mt-1"></span>
+            </div>
+
+            <div class="col-3 form-group">
+                <div class="mb-1">
+                    <select class="form-control form-auth" required name="DriveWheels">
+                        <option value="">Select Drive Wheels</option>
+                        <option value="fwd">Front-Wheel Drive (FWD)</option>
+                        <option value="rwd">Rear-Wheel Drive (RWD)</option>
+                        <option value="4wd">Four-Wheel Drive (4WD)</option>
+                        <!-- Add other options as needed based on your dataset -->
+                    </select>
+                </div>
+                <span class="text-danger mt-1"></span>
+            </div>
+
+            <div class="col-3 form-group">
+                <div class="mb-1">
+                    <select class="form-control form-auth" required name="EngineType">
+                        <option value="">Select Engine Type</option>
+                        <option value="OHC">Overhead Camshaft (OHC)</option>
+                        <option value="OHCV">Overhead Camshaft with Variable Valve Timing (OHCV)</option>
+                        <option value="DOHC">Double Overhead Camshaft (DOHC)</option>
+                        <option value="OHCF">Overhead Camshaft with Fuel Injection (OHCF)</option>
+                        <option value="DOHCV">Double Overhead Camshaft with Variable Valve Timing (DOHCV)</option>
+                        <option value="I">Inline (I)</option>
+                        <option value="Rotor">Rotary (Rotor)</option>
+                        <!-- Add other options as needed based on your dataset -->
+                    </select>
+                </div>
+                <span class="text-danger mt-1"></span>
+            </div>
+            <div class="col-3 form-group">
+                <div class="mb-1">
+                    <select class="form-control form-auth" required name="NumOfCylinders">
+                        <option value="">Select Number of Cylinders</option>
+                        <option value="3">3 cylinders</option>
+                        <option value="4">4 cylinders</option>
+                        <option value="5">5 cylinders</option>
+                        <option value="6">6 cylinders</option>
+                        <option value="8">8 cylinders</option>
+                        <!-- Add other options as needed based on your dataset -->
+                    </select>
+                </div>
+                <span class="text-danger mt-1"></span>
+            </div>
+
+            <div class="col-3 form-group">
+                <div class="mb-1">
+                    <select class="form-control form-auth" required name="FuelSystem">
+                        <option value="">Select Fuel System</option>
+                        <option value="1bbl">One-Barrel Carburetor (1bbl)</option>
+                        <option value="2bbl">Two-Barrel Carburetor (2bbl)</option>
+                        <option value="4bbl">Four-Barrel Carburetor (4bbl)</option>
+                        <option value="idi">Indirect Diesel Injection (IDI)</option>
+                        <option value="mpfi">Multi-Point Fuel Injection (MPFI)</option>
+                        <option value="spdi">Single-Point Fuel Injection (SPDI)</option>
+                        <!-- Add other options as needed based on your dataset -->
+                    </select>
+                </div>
+                <span class="text-danger mt-1"></span>
+            </div>
+
+            <div class="col-3 form-group">
+                <div class="mb-1">
+                    <input type="number" placeholder="Horsepower" class="form-control form-auth" required min="1" step="1" name="Horsepower">
+                    <!-- Set min and step values based on your dataset -->
+                </div>
+                <span class="text-danger mt-1"></span>
+            </div>
+            <div class="col-3 form-group">
+                <div class="mb-1">
+                    <input id="peakRpmInput" placeholder="Peak Revolutions Per Minute (RPM)" class="form-control form-auth" required name="PeakRpm" min="1" step="1" type="number">
+                    <!-- Set min and step values based on your dataset -->
+                </div>
+                <span class="text-danger mt-1"></span>
+            </div>
+            <div class="col-3 form-group">
+                <div class="mb-1">
+                    <input type="number" id="cityMpgInput" placeholder="City Miles Per Gallon (MPG)" name="CityMPG" class="form-control form-auth" required min="1" step="1">
+                    <!-- Set min and step values based on your dataset -->
+                </div>
+                <span class="text-danger mt-1"></span>
+            </div>
+
+            <div class="col-3 form-group">
+                <div class="mb-1">
+                    <input type="number" id="highwayMpgInput" placeholder="Highway Miles Per Gallon (MPG)" name="HighwayMPG" class="form-control form-auth" required min="1" step="1">
+                    <!-- Set min and step values based on your dataset -->
+                </div>
+                <span class="text-danger mt-1"></span>
+            </div>
+            <div class="col-3 form-group"></div>
+            <div class="col-3 form-group"></div>
+
+        </div>
+        <div class="d-flex justify-content-center mt-2 ">
+            <button type="submit"  style="text-decoration: none; background: #1C1C1C; color: white; height: 50px; border-radius: 30px; font-weight: bold; width: 20%; text-align: center;">Get Price</a>
+
+        </div>
+    </form>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.user-dropdown-toggle').click(function (e) {
+                e.stopPropagation();
+                $('#userDropdownMenu').toggleClass('show');
+            });
+
+            $(document).click(function (e) {
+                if (!$(e.target).closest('.dropdown').length) {
+                    $('#userDropdownMenu').removeClass('show');
+                }
+            });
+        });
+    </script>
+    <style>
+        .carousel-control-prev-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+        }
+
+        .carousel-control-next-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+        }
+    </style>
+
+</div>

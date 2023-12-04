@@ -1,0 +1,43 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&family=Smooch+Sans:wght@600&display=swap');
+.title {
+    font-family: 'Smooch Sans', sans-serif;
+    font-size: 120px;
+}
+.subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Smooch Sans', sans-serif;
+    text-align:center;
+    position:relative;
+    bottom:20px;
+}
+.form-auth {
+    height: 50px;
+    background: #F2F2F2;
+    border-radius:10px;
+}
+.btn-login {
+    background: #1C1C1C;
+    color: white;
+    height: 50px;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 100%;
+}
+.btn-login:hover {
+    background: #1C1C1C;
+    color: white;
+    height: 50px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.forget:hover{
+    text-decoration:none;
+}
+.image_login {
+    width: 110%;
+    height: 100%;
+    position: relative;
+    bottom: 27px;
+    left: 83px;
+}
